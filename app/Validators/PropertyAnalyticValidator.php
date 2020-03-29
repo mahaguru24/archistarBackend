@@ -18,7 +18,16 @@ class PropertyAnalyticValidator extends LaravelValidator
      * @var array
      */
     protected $rules = [
-        ValidatorInterface::RULE_CREATE => [],
-        ValidatorInterface::RULE_UPDATE => [],
+        // todo :: add validations to check property and analytics ids
+        ValidatorInterface::RULE_CREATE => [
+            'property_id' => 'required',
+            'analytic_type_id' => 'required',
+            'value' => 'required',
+        ],
+        ValidatorInterface::RULE_UPDATE => [
+            'property_id' => 'required',
+            'analytic_type_id' => 'required',
+            'value' => 'required',
+        ],
     ];
 }

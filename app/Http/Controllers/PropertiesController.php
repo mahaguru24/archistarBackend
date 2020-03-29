@@ -51,14 +51,9 @@ class PropertiesController extends Controller
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $properties = $this->repository->all();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $properties,
-            ]);
-        }
-
-        return view('properties.index', compact('properties'));
+        return response()->json([
+            'data' => $properties,
+        ]);
     }
 
     /**
@@ -83,21 +78,12 @@ class PropertiesController extends Controller
                 'data'    => $property->toArray(),
             ];
 
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
+            return response()->json($response);
         } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return response()->json([
+                'error'   => true,
+                'message' => $e->getMessageBag()
+            ]);
         }
     }
 
@@ -112,14 +98,10 @@ class PropertiesController extends Controller
     {
         $property = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
 
-            return response()->json([
-                'data' => $property,
-            ]);
-        }
-
-        return view('properties.show', compact('property'));
+        return response()->json([
+            'data' => $property,
+        ]);
     }
 
     /**
@@ -159,23 +141,14 @@ class PropertiesController extends Controller
                 'data'    => $property->toArray(),
             ];
 
-            if ($request->wantsJson()) {
 
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
+            return response()->json($response);
         } catch (ValidatorException $e) {
 
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return response()->json([
+                'error'   => true,
+                'message' => $e->getMessageBag()
+            ]);
         }
     }
 
@@ -191,14 +164,9 @@ class PropertiesController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'Property deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Property deleted.');
+        return response()->json([
+            'message' => 'Property deleted.',
+            'deleted' => $deleted,
+        ]);
     }
 }

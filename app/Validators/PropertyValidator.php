@@ -18,7 +18,15 @@ class PropertyValidator extends LaravelValidator
      * @var array
      */
     protected $rules = [
-        ValidatorInterface::RULE_CREATE => [],
-        ValidatorInterface::RULE_UPDATE => [],
+        ValidatorInterface::RULE_CREATE => [
+            'suburb' => 'required',
+            'state' => 'required',
+            'country' => 'required'
+        ],
+        ValidatorInterface::RULE_UPDATE => [
+            'suburb' => 'required',
+            'state' => 'required',
+            'country' => 'required'
+        ],
     ];
 }

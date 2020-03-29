@@ -26,4 +26,19 @@ class PropertyAnalytic extends Model implements Transformable
         'value',
     ];
 
+    protected $casts = [
+        'value' => 'float',
+    ];
+
+
+    public function analytic()
+    {
+        return $this->belongsTo(AnalyticTypes::class, 'analytic_type_id','id');
+    }
+
+    public function property()
+    {
+        return $this->belongsTo(Property::class, 'property_id','id');
+    }
+
 }

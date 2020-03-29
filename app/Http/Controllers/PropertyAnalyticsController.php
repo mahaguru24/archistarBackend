@@ -11,6 +11,7 @@ use App\Http\Requests\PropertyAnalyticCreateRequest;
 use App\Http\Requests\PropertyAnalyticUpdateRequest;
 use App\Repositories\PropertyAnalyticRepository;
 use App\Validators\PropertyAnalyticValidator;
+use function GuzzleHttp\Promise\all;
 
 /**
  * Class PropertyAnalyticsController.
@@ -35,7 +36,10 @@ class PropertyAnalyticsController extends Controller
      * @param PropertyAnalyticRepository $repository
      * @param PropertyAnalyticValidator $validator
      */
-    public function __construct(PropertyAnalyticRepository $repository, PropertyAnalyticValidator $validator)
+    public function __construct(
+        PropertyAnalyticRepository $repository,
+        PropertyAnalyticValidator $validator
+    )
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -51,14 +55,9 @@ class PropertyAnalyticsController extends Controller
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $propertyAnalytics = $this->repository->all();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $propertyAnalytics,
-            ]);
-        }
-
-        return view('propertyAnalytics.index', compact('propertyAnalytics'));
+        return response()->json([
+            'data' => $propertyAnalytics,
+        ]);
     }
 
     /**
@@ -83,21 +82,13 @@ class PropertyAnalyticsController extends Controller
                 'data'    => $propertyAnalytic->toArray(),
             ];
 
-            if ($request->wantsJson()) {
+            return response()->json($response);
 
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return response()->json([
+                'error'   => true,
+                'message' => $e->getMessageBag()
+            ]);
         }
     }
 
@@ -112,28 +103,10 @@ class PropertyAnalyticsController extends Controller
     {
         $propertyAnalytic = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
 
-            return response()->json([
-                'data' => $propertyAnalytic,
-            ]);
-        }
-
-        return view('propertyAnalytics.show', compact('propertyAnalytic'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $propertyAnalytic = $this->repository->find($id);
-
-        return view('propertyAnalytics.edit', compact('propertyAnalytic'));
+        return response()->json([
+            'data' => $propertyAnalytic,
+        ]);
     }
 
     /**
@@ -159,26 +132,15 @@ class PropertyAnalyticsController extends Controller
                 'data'    => $propertyAnalytic->toArray(),
             ];
 
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
+            return response()->json($response);
         } catch (ValidatorException $e) {
 
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return response()->json([
+                'error'   => true,
+                'message' => $e->getMessageBag()
+            ]);
         }
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -191,14 +153,29 @@ class PropertyAnalyticsController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
+        return response()->json([
+            'message' => 'PropertyAnalytic deleted.',
+            'deleted' => $deleted,
+        ]);
+    }
 
-            return response()->json([
-                'message' => 'PropertyAnalytic deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
+    public function analytics ($column, $value) {
+        $summary = $this->repository
+            ->with('property')
+            ->with('analytic')
+            ->whereHas('property', function ($query) use ($column, $value) {
+                $query->where($column, $value);
+            })
+            ->all();
+        $stats = [
+            'min' => $summary->min('value'),
+            'max' => $summary->max('value'),
+            'average' => $summary->average('value'),
+//            'percentagePropertyWithValue' =>
+        ];
 
-        return redirect()->back()->with('message', 'PropertyAnalytic deleted.');
+        return response()->json([
+            $stats
+        ]);
     }
 }
