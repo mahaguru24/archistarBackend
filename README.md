@@ -4,6 +4,9 @@
 
 ## Installation
 
+##### Install composer dependencies
+`docker run --rm -v $(pwd):/app composer install`
+
 ##### Run all containers
 `docker-compose up -d`
 

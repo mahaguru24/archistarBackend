@@ -2,15 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f2f7b31-fb36-4db3-8e30-168bd57126b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable />
@@ -116,6 +120,8 @@
       <path value="$PROJECT_DIR$/vendor/psr/log" />
       <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
       <path value="$PROJECT_DIR$/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/vendor/prettus/laravel-validation" />
+      <path value="$PROJECT_DIR$/vendor/prettus/l5-repository" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Zn3QtCtm7iPcgCBEUPZDIiOMx7" />
@@ -130,6 +136,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
+  <component name="RunManager">
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -140,7 +152,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585461017956</updated>
-      <workItem from="1585461019504" duration="1989000" />
+      <workItem from="1585461019504" duration="3592000" />
+      <workItem from="1585467449035" duration="693000" />
     </task>
     <servers />
   </component>
@@ -148,9 +161,18 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1126" y="-1112" width="670" height="676" key="search.everywhere.popup" timestamp="1585462783408">
-      <screen x="-459" y="-1417" width="2560" height="1337" />
+    <state x="-12" y="-1372" key="#CLI_Interpreters" timestamp="1585467739889">
+      <screen x="-459" y="-1417" width="2560" height="1417" />
+    </state>
+    <state x="-12" y="-1372" key="#CLI_Interpreters/-459.-1417.2560.1417/0.23.1792.1017@-459.-1417.2560.1417" timestamp="1585467739889" />
+    <state x="-69" y="-818" width="499" height="289" key="ComposerInitDialogKey" timestamp="1585467740940">
+      <screen x="-459" y="-1417" width="2560" height="1417" />
+    </state>
+    <state x="-69" y="-818" width="499" height="289" key="ComposerInitDialogKey/-459.-1417.2560.1417/0.23.1792.1017@-459.-1417.2560.1417" timestamp="1585467740940" />
+    <state x="1126" y="-1094" width="670" height="717" key="search.everywhere.popup" timestamp="1585468283073">
+      <screen x="-459" y="-1417" width="2560" height="1417" />
     </state>
     <state x="1126" y="-1112" width="670" height="676" key="search.everywhere.popup/-459.-1417.2560.1337/0.23.1792.1097@-459.-1417.2560.1337" timestamp="1585462783408" />
+    <state x="1126" y="-1094" width="670" height="717" key="search.everywhere.popup/-459.-1417.2560.1417/0.23.1792.1017@-459.-1417.2560.1417" timestamp="1585468283073" />
   </component>
 </project>
